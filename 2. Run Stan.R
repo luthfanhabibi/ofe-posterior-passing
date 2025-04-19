@@ -150,7 +150,7 @@ for (field_id in field_ids) {
   remove(fit)
 }
 
-# Step 2: Run the updated prior Stan model with cross-field posterior priors
+# Step 2: Run the updated prior Stan model with posterior passing
 for (field_id in field_ids) {
   # Filter data for the current field ID
   data_stan <- data %>% filter(field.id == field_id)
@@ -164,9 +164,9 @@ for (field_id in field_ids) {
   X1 <- matrix(0, nrow(data_stan), K)
   X1[, 1] <- 1  # Intercept
   
-  # Get posterior means and standard deviations from the other field
+  # Get posterior means and standard deviations from the noninformative model
   other_field_id <- ifelse(field_id == 1, 2, 1)
-  posterior_other <- posterior_list[[other_field_id]]
+  posterior_passing <- posterior_list[[other_field_id]]
   
   # Prepare data for the updated prior Stan model
   stan_dat_updated_prior <- list(
@@ -176,17 +176,17 @@ for (field_id in field_ids) {
     X1 = X1,
     y = data_stan$yield.total,
     N = length(data_stan$yield.total),
-    quadcoef_mean = posterior_other$quadcoef_mean,
-    quadcoef_sd = posterior_other$quadcoef_sd,
-    firstcoef_mean = posterior_other$firstcoef_mean,
-    firstcoef_sd = posterior_other$firstcoef_sd,
-    beta1_mean = posterior_other$beta1_mean,
-    beta1_sd = posterior_other$beta1_sd
+    quadcoef_mean = posterior_passing$quadcoef_mean,
+    quadcoef_sd = posterior_passing$quadcoef_sd,
+    firstcoef_mean = posterior_passing$firstcoef_mean,
+    firstcoef_sd = posterior_passing$firstcoef_sd,
+    beta1_mean = posterior_passing$beta1_mean,
+    beta1_sd = posterior_passing$beta1_sd
   )
   
   # Fit the updated prior Stan model
   fit_updated_prior <- sampling(
-    mod_udpated_prior, 
+    mod_updated_prior, 
     data = stan_dat_updated_prior, 
     cores = parallel::detectCores(),  # Automatically detect the number of cores
     chains = 4, 
