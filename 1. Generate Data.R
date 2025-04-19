@@ -145,3 +145,33 @@ ggplot(data, aes(x = yield.total, fill = as.factor(target.dens))) +
     strip.text = element_text(size = 10, face = "bold"),
     legend.position = "bottom"
   )
+
+# Scatter plot for Field ID 1 with yield.total as the main key
+ggplot(data %>% filter(field.id == 1), aes(x = x_53n, y = y_53n, color = yield.total)) +
+  geom_point(size = 3) +
+  scale_color_gradient(
+    low = "blue", high = "red", 
+    name = "Yield Total"
+  ) +
+  labs(
+    title = "Yield Distribution for Field ID 1",
+    x = "x_53n",
+    y = "y_53n"
+  ) +
+  theme_minimal() +
+  coord_fixed()
+
+# Scatter plot for Field ID 2 with yield.total as the main key
+ggplot(data %>% filter(field.id == 2), aes(x = x_53n, y = y_53n, color = yield.total)) +
+  geom_point(size = 3) +
+  scale_color_gradient(
+    low = "blue", high = "red", 
+    name = "Yield Total"
+  ) +
+  labs(
+    title = "Yield Distribution for Field ID 2",
+    x = "x_53n",
+    y = "y_53n"
+  ) +
+  theme_minimal() +
+  coord_fixed()

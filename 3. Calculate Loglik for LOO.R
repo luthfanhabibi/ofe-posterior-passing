@@ -20,6 +20,9 @@ model_names <- c("noninf_", "inf_")
 # Loop through models and field IDs
 for (model_name in model_names) {
   for (field_id in field_ids) {
+    #Log the current model and field being analyzed
+    cat("Analyzing model:", model_name, "and field ID:", field_id, "\n")
+    
     # Filter data for the current field ID
     data_field <- data %>% filter(field.id == field_id)
     
@@ -132,10 +135,6 @@ psis_loo_list <- mapply(function(log_ratios, r_eff) {
 waic_list <- mapply(function(log_ratios, r_eff) {
   waic(log_ratios, r_eff = r_eff, cores = 2)
 }, log_ratios_list, r_eff_list, SIMPLIFY = FALSE)
-
-# Compare models
-loo_diff_list <- loo_compare(psis_loo_list[[1]], psis_loo_list [[2]], psis_loo_list [[3]], psis_loo_list [[4]])
-waic_diff_list <- loo_compare(waic_list[[1]], waic_list [[2]], waic_list[[3]], waic_list [[4]])
 
 # Print WAIC estimates
 lapply(waic_list, function(waic) waic$estimates)
