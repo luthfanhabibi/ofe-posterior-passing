@@ -1,4 +1,4 @@
-# Gaussian process model for On-farm experiment field using Bayesian posterior passing technique
+# Gaussian process model for On-Farm Experiment (OFE) field using Bayesian posterior passing technique
 
 ## Overview
 
