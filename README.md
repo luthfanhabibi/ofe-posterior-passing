@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repository contains the codebase used for our paper titled **"Assessing uncertainty of soybean yield response to seeding rates in on-farm experiments using Bayesian posterior passing technique (Link: https://doi.org/10.1016/j.eja.2025.127651)**. 
+This repository contains the codebase used for our paper titled **Assessing uncertainty of soybean yield response to seeding rates in on-farm experiments using Bayesian posterior passing technique** (Link: https://doi.org/10.1016/j.eja.2025.127651). 
 
 ## Code Structure
 
