@@ -20,7 +20,7 @@ This code is to create visualization for the yield response to the OFE treatment
 
 ### Citation
 
-If you use this code or dataset in your research, please cite our paper:
+If you use this code in your research, please cite our paper:
 
 ```bibitex
 @article{HABIBI2025127651,
